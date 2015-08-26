@@ -10,7 +10,6 @@ int directory_exists(const char * dirname) {
 		closedir (dir);
 		return 1;
 	} else {
-		perror ("Could not open the directory");
 		return 0;
 	}
 }

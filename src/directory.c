@@ -18,7 +18,7 @@ int directory_exists(const char * dirname) {
 /*
  * Get an array of filenames contained inside the given directory
  */
-void get_directory_filenames(const char * dirname, char filenames[1000][500], int * filecount) {
+void get_directory_filenames(const char * dirname, char filenames[MAX_FILES_PER_DIR][MAX_FILENAME_LENGTH], int * filecount) {
 	DIR *dir;
 	struct dirent *ent;
 	int i = 0;
@@ -28,7 +28,7 @@ void get_directory_filenames(const char * dirname, char filenames[1000][500], in
 			if (strcmp(ent->d_name, ".") == 0 || strcmp(ent->d_name, "..") == 0) {
 				continue;
 			}
-			strcpy(filenames[i], DIRNAME);
+			strcpy(filenames[i], dirname);
 			strcat(filenames[i], ent->d_name);
 			i++;
 		}

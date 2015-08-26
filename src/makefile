@@ -1,2 +1,2 @@
 all:
-	gcc main.c directory.h directory.c
+	gcc main.c directory.h directory.c filer.h filer.c logger.h logger.c

@@ -67,6 +67,11 @@ void organize_file(const char * filename, const char * destdir) {
 	}
 
 	// move the file
+	printf("moving file...\nold location: %s\nnew location:%s/%s\n",filename, destdirname, filename);
+	char * filename_nopath = rindex(filename, '/');
+	char newfilelocation[500];
+	sprintf(newfilelocation, "%s%s", destdirname, filename_nopath);
+	rename(filename, newfilelocation);
 	
 }
 

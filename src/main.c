@@ -26,6 +26,7 @@ int main(int argc, char * argv[]) {
 	char * sourcedirname = argv[1];
 	char * destindirname = argv[2];
 
+	// validate the existence of the source and dest dir's; exit if not there
 	if (!directory_exists(sourcedirname)) exit_on_no_directory(sourcedirname);
 	if (!directory_exists(destindirname)) exit_on_no_directory(destindirname);
 
@@ -34,7 +35,6 @@ int main(int argc, char * argv[]) {
 		do_filing(sourcedirname, destindirname);
 		sleep(1);
 	}
-
 }
 
 /**

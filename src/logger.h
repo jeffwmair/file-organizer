@@ -1,3 +1,3 @@
-#define LOG_FILE app.log
+#define LOG_FILE "app.log"
 
 void log_message(const char * message);

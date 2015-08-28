@@ -1,4 +1,3 @@
-#include <time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <time.h>
@@ -9,9 +8,12 @@
 double days_old_date(time_t t);
 struct tm get_file_date(const char * filename);
 
+/**
+ * Main file-move operation
+ */
 void do_filing(const char * sourcedir, const char * destdir) {
 
-	log_message("Doing filing...\n");
+	log_message("Doing filing...");
 
 	// get the names of the files in the dir
 	char filenames[MAX_FILES_PER_DIR][MAX_FILENAME_LENGTH];
@@ -26,7 +28,9 @@ void do_filing(const char * sourcedir, const char * destdir) {
 	for (i = 0; i < numFiles; i++) {
 		const char * filename = filenames[i];
 		if (is_older_than_n_days(DAYS_UNTIL_AUTO_MOVE, filename)) {
-			printf("'%s' is older!\n", filename);
+			char msg[500];
+			sprintf(msg, "'%s' is older!", filename);
+			log_message(msg);
 			organize_file(filename, destdir);
 		}
 	}
@@ -62,12 +66,14 @@ void organize_file(const char * filename, const char * destdir) {
 	char destdirname[400];
 	sprintf(destdirname, "%s%d-%02d-dropbox-pics", destdir, ft.tm_year+1900, ft.tm_mon+1);
 	if (!directory_exists(destdirname)) {
-		printf("need to make dir\n");
+		log_message("need to make dir\n");
 		mkdir(destdirname, 0700);
 	}
 
 	// move the file
-	printf("moving file...\nold location: %s\nnew location:%s/%s\n",filename, destdirname, filename);
+	char msg[500];
+	sprintf(msg, "moving file...\nold location: %s\nnew location:%s/%s",filename, destdirname, filename);
+	log_message(msg);
 	char * filename_nopath = rindex(filename, '/');
 	char newfilelocation[500];
 	sprintf(newfilelocation, "%s%s", destdirname, filename_nopath);

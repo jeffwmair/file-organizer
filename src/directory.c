@@ -39,3 +39,10 @@ void get_directory_filenames(const char * dirname, char filenames[MAX_FILES_PER_
 	// tell the caller how many files were found
 	*filecount = i;
 }
+
+/**
+ * Returns a formatted message indicating that the directory is missing
+ */
+void get_message_missing_dir(const char * dirname, char * msg) {
+	sprintf(msg, "Directory with name '%s' could not be found", dirname);
+}

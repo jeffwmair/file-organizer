@@ -1,4 +1,4 @@
-#define DAYS_UNTIL_AUTO_MOVE 2
+#define DAYS_UNTIL_AUTO_MOVE 0
 
 #include "directory.h"
 
